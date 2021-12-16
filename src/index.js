@@ -3,14 +3,8 @@ global.userInfo = {
   "adresse_domicile": "1 rue Jean macé 95170 Deuil-la-barre",
   "adresse_campus": "8 bis rue de la fontaine aux rois 75018 Paris",
   "adresse_entreprise": "1 rue de la poire 75012 Paris",
-  "transport_campus": [{ 
-    vehicule: "velo", 
-    percentage: 65 
-  }],
-  "transport_entreprise": [{ 
-    vehicule: "marche", 
-    percentage: 100
-  }]
+  "transport_campus": [],
+  "transport_entreprise": []
 };
 
 // Import all plugins
@@ -78,8 +72,11 @@ import * as pathManager from "./library/pathManager"
     myModal.toggle()
   }
 
-  function updateAdress(target, value) {
-    document.querySelector(target).innerHTML = value
+  document.getElementById('confirm').onclick = () => {
+    fetch('http://localhost:8000/api/store_form_api', {
+      method: 'POST',
+      body: JSON.stringify(global.userInfo)
+    })
   }
 })()
 

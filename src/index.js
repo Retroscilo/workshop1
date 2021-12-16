@@ -7,7 +7,10 @@ global.userInfo = {
     vehicule: "velo", 
     percentage: 65 
   }],
-  "transport_entreprise": []
+  "transport_entreprise": [{ 
+    vehicule: "velo", 
+    percentage: 65 
+  }]
 };
 
 // Import all plugins
@@ -17,21 +20,26 @@ import initVehiculeSelection from "./library/vehiculeSelection"
 import * as pathManager from "./library/pathManager"
 
 (function() {
-  initVehiculeSelection(document.querySelector('.add'))
+  initVehiculeSelection(document.querySelector('.add[data-trajet="transport_campus"]'), "transport_campus")
+  initVehiculeSelection(document.querySelector('.add[data-trajet="transport_entreprise"]'), "transport_entreprise")
 
-  document.querySelector('.domicile').innerHTML = '&nbsp; ' + global.userInfo.adresse_domicile
+  document.querySelector('.domicile').innerHTML = '&nbsp;' + global.userInfo.adresse_domicile
   document.querySelector('.campus').innerHTML = ' ' + global.userInfo.adresse_campus
   document.querySelector('.travail').innerHTML = ' ' + global.userInfo.adresse_entreprise
 
   global.userInfo.transport_campus.forEach(transport => {
-    pathManager.addTransport(transport)
+    pathManager.addTransport(transport, "transport_campus")
   })
   
+  /* global.userInfo.transport_entreprise.forEach(transport => {
+    pathManager.addTransport(transport, "transport_entreprise")
+  }) */
   
   
   
   
   
+
   
   
   // modal handling

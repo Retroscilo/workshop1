@@ -1,9 +1,6 @@
-import initVehiculeSelection from "./vehiculeSelection";
-
 let add = document.querySelector('.addContainer')
-console.log(add)
 
-function createVehiculeIcon(data) {
+function createVehiculeIcon(data, trajet) {
   const container = document.createElement('div')
   container.className = "pathTransport"
   
@@ -19,7 +16,7 @@ function createVehiculeIcon(data) {
   remove.addEventListener('click', () => {
     container.previousElementSibling.remove()
     container.remove()
-    if(document.querySelectorAll('.pathTransport').length === 1) addSelection()
+    if(document.querySelectorAll(`.path[data-trajet=${trajet}] .pathTransport`).length === 1) addSelection(trajet)
   })
 
   container.append(icon)
@@ -38,23 +35,22 @@ function createRod () {
   return rod
 }
 
-function addTransport(data) {
-  const [ container, rod ] = createVehiculeIcon(data)
-  document.querySelector('.path').insertBefore(container, document.querySelector('.addContainer'))
-  document.querySelector('.path').insertBefore(rod, document.querySelector('.addContainer'))
+function addTransport(data, trajet) {
+  const [ container, rod ] = createVehiculeIcon(data, trajet)
+  document.querySelector(`.path[data-trajet=${trajet}]`).insertBefore(container, document.querySelector('.addContainer'))
+  document.querySelector(`.path[data-trajet=${trajet}]`).insertBefore(rod, document.querySelector('.addContainer'))
 
-  if(document.querySelectorAll('.pathTransport').length >= 2) {
-    document.querySelector('.addContainer').remove()
-    let lastRod = [...document.querySelectorAll('.rod')].reverse()[0]
+  if(document.querySelectorAll(`.path[data-trajet=${trajet}] .pathTransport`).length >= 2) {
+    document.querySelector(`.path[data-trajet=${trajet}] .addContainer`).remove()
+    let lastRod = [...document.querySelectorAll(`.path[data-trajet=${trajet}] .rod`)].reverse()[0]
     lastRod.remove()
   }
 }
 
-function addSelection() {
-  let rods = [...document.querySelectorAll('.rod')].reverse()
-  console.log(rods[0].previousElementSibling)
-  document.querySelector('.path').insertBefore(add, rods[0])
-  document.querySelector('.path').insertBefore(createRod(), add)
+function addSelection(trajet) {
+  let rods = [...document.querySelectorAll(`.path[data-trajet=${trajet}] .rod`)].reverse()
+  document.querySelector(`.path[data-trajet=${trajet}]`).insertBefore(add, rods[0])
+  document.querySelector(`.path[data-trajet=${trajet}]`).insertBefore(createRod(), add)
 }
 
 export { addTransport }

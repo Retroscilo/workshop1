@@ -1,11 +1,10 @@
 import { addTransport } from "./pathManager"
 
+let trajet;
 function initVehiculeSelection(startNode) {
-  let trajet;
 
   startNode.onclick = () => {
     trajet = startNode.dataset.trajet
-    console.log(trajet)
     startNode.classList.add('add--active');
     document.querySelector('.transportSelection').classList.remove('transportSelection--hidden')
     document.addEventListener('click', closeSelection)
@@ -35,9 +34,10 @@ function initVehiculeSelection(startNode) {
     let percentage = selectedNode.querySelector('input[type="range"]').value
     let vehicule = selectedNode.querySelector('.transportIcon--selected').dataset.vehicule
     const transport = { vehicule, percentage }
+    console.log(trajet)
     global.userInfo[trajet].push(transport)
     closeSelection()
-    addTransport(transport)
+    addTransport(transport, trajet)
   }
 
   function closeSelection(e) {

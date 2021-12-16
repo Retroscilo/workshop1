@@ -1,0 +1,202 @@
+.transportSelection {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 5%);
+  opacity: 1;
+  transition: transform .2s ease-in-out, opacity .2s ease-in-out;
+  pointer-events: initial;
+}
+
+
+.transportSelection--hidden {
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, calc(5% + -40px));
+}
+
+#transportType > div:not(:last-child) { // muscle, essence...
+  display: flex;
+  position: relative;
+}
+
+.dummyShadow {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 130px;
+  box-shadow: 2px 4px 14px 0px #0000001A;
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
+  border-right: 1px solid rgba(0, 0, 0, 0.125);
+  border-left: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: .25rem;
+}
+
+.transportTypeItem {
+  width: 130px;
+  height: 44px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: .25rem;
+
+  &::after {
+    content: "";
+    position: absolute;
+    right: 17px;
+    top: 50%;
+    transform: translateY(-40%);
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    opacity: 0.6;
+    background: url('../public/svg/right.svg') center;
+    pointer-events: none;
+    transition: all .2s;
+  }
+
+  &:hover::after {
+    right: 7px;
+    opacity: 1;
+  }
+
+  &.transportTypeItem--selected {
+    background: $main-color;
+    color: white;
+
+    &::after {
+      right: 17px;
+      background: url('../public/svg/right--filled.svg') center;
+      opacity: 1;
+    }
+  }
+}
+
+.transportVehicule {
+  display: flex;
+  height: 44px;
+  margin-left: 20px;
+  box-shadow: 2px 4px 14px 0px #0000001A;
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: .25rem;
+  overflow: hidden;
+}
+
+.transportIcon {
+  width: 42px;
+  height: 42px;
+  border-radius: .25rem;
+  transition: background-color .2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  fill: black;
+}
+
+.transportIcon:hover {
+  background: lightgrey;
+  
+  & > svg {
+    fill: white;
+    pointer-events: none;
+  }
+}
+
+.transportIcon--selected {
+  background: $main-color !important;
+  
+  & > svg {
+    fill: white;
+  }
+}
+
+.percentageInput {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 20px;
+  height: 44px;
+  box-shadow: 2px 4px 14px 0px #0000001A;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: .25rem;
+  padding: 0 10px;
+  width: 267px;
+  overflow: visible;
+  transition: width .2s ease-in-out, overflow 0s, opacity .2s ease-in-out;
+  transition-delay: 0s, .2s;
+  position: relative;
+  opacity: 1;
+
+  & .check {
+    opacity: inherit;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: url('../public/svg/check.svg') center;
+    background-size: 140%;
+    cursor: pointer;
+    right: -45px;
+    top: calc(50% - 17px);
+    transition: transform .2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.percentageValue {
+  white-space: nowrap;
+  margin-left: 10px;
+}
+
+.percentageInput--hidden {
+  overflow: hidden;
+  opacity: 0;
+  width: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.transportVehicule {
+  transition: width .2s ease-in-out, margin .2s ease-in-out, opacity .2s ease-in-out;
+  position: relative;
+  opacity: 1;
+}
+
+.transportVehicule--hidden {
+  padding: 0;
+  margin: 0;
+  width: 0 !important;
+  pointer-events: none;
+  opacity: 0;
+}
+
+@keyframes reveal {
+  0% {
+    width: 0;
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  1% {
+    width: initial;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes hide {
+  to {
+    width: 0;
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}

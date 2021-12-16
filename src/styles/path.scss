@@ -1,0 +1,123 @@
+.path {
+  width: 80%;
+  max-width: 850px;
+  margin: 0 auto;
+
+  & .dot {
+    position: relative;
+    width: 10px;
+    height: 10px;
+    background: $main-color;
+    border-radius: 50%;
+  }
+
+  & .rod {
+    background: $main-color;
+    border-radius: 5px;
+    flex-grow: 3;
+    height: 3px;
+    margin: 0 15px;
+  }
+
+  & .add {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border: 3px solid $main-color;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    & > svg {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      fill: $main-color;
+    }
+  }
+
+  & .add:hover {
+    background: $main-color;
+
+    & svg {
+      fill: white;
+    }
+  }
+
+  & .add.add--active {
+    background: $main-color;
+
+    & svg {
+      fill: white;
+    }
+  }
+
+  & .dot > * {
+    position: absolute;
+    height: 55px;
+    top: -65px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.pathTransport {
+  position: relative;
+}
+
+.pathTransport__remove {
+  width: 20px;
+  height: 20px;
+  background: url('../public/svg/remove.svg') center no-repeat;
+  background-size: 90%;
+  background-color: white;
+  position: absolute;
+  border-radius: 50%;
+  top: -10px;
+  right: -7px;
+  cursor: pointer;
+}
+
+.pathTransport p {
+  text-align: center;
+}
+
+.pathTransport__icon {
+  width: 45px;
+  height: 45px;
+  background-color: $main-color !important;
+  border-radius: .25rem;
+}
+
+.pathTransport__icon[data-vehicule="velo"] {
+  background: url('../public/svg/muscle/icon_bike_white.svg') center no-repeat;
+}
+.pathTransport__icon[data-vehicule="marche"] {
+  background: url('../public/svg/muscle/marche_white.svg') center no-repeat;
+}
+.pathTransport__icon[data-vehicule="car"] {
+  background: url('../public/svg/essence/voiture_white.svg') center no-repeat;
+}
+.pathTransport__icon[data-vehicule="scooter"] {
+  background: url('../public/svg/essence/scooter_white.svg') center no-repeat;
+}
+.pathTransport__icon[data-vehicule="moto"] {
+  background: url('../public/svg/essence/moto_white.svg') center no-repeat;
+}
+.pathTransport__icon[data-vehicule="suv"] {
+  background: url('../public/svg/essence/suv_white.svg') center no-repeat;
+}
+.pathTransport__icon[data-vehicule="ecar"] {
+  background: url('../public/svg/electrique/icon_ecar_white.svg') center no-repeat;
+}
+.pathTransport__icon[data-vehicule="trottinette"] {
+  background: url('../public/svg/electrique/icon_trotinnette_white.svg') center no-repeat;
+}
+.pathTransport__icon[data-vehicule="bus"] {
+  background: url('../public/svg/transport/icon_bus_white.svg') center no-repeat;
+}
+.pathTransport__icon[data-vehicule="metro"] {
+  background: url('../public/svg/transport/icon_subway_white.svg') center no-repeat;
+}
+

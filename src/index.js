@@ -8,8 +8,8 @@ global.userInfo = {
     percentage: 65 
   }],
   "transport_entreprise": [{ 
-    vehicule: "velo", 
-    percentage: 65 
+    vehicule: "marche", 
+    percentage: 100
   }]
 };
 
@@ -31,17 +31,15 @@ import * as pathManager from "./library/pathManager"
     pathManager.addTransport(transport, "transport_campus")
   })
   
-  /* global.userInfo.transport_entreprise.forEach(transport => {
+  global.userInfo.transport_entreprise.forEach(transport => {
     pathManager.addTransport(transport, "transport_entreprise")
-  }) */
-  
-  
-  
-  
+  })
   
 
-  
-  
+
+
+
+
   // modal handling
   var myModal = new bootstrap.Modal(document.getElementById('modal'))
   var modalContent = document.getElementById('modal').querySelector('#template')
@@ -58,7 +56,30 @@ import * as pathManager from "./library/pathManager"
     e.preventDefault()
     modalContent.appendChild(addressFormTemplate, true)
     autoCompletion(document.getElementById('addressInput'), addressFormTemplate.querySelector('.options'))
+    document.getElementById('saveAndCloseModal').onclick = () => {
+      document.querySelector('.domicile').innerHTML = '&nbsp;' + document.getElementById('addressInput').value
+      global.userInfo.adresse_domicile = document.getElementById('addressInput').value
+      console.log(global.userInfo)
+      myModal.hide()
+    }
     myModal.toggle()
+  }
+
+  document.getElementById('changeEntreprise').onclick = e => {
+    e.preventDefault()
+    modalContent.appendChild(addressFormTemplate, true)
+    autoCompletion(document.getElementById('addressInput'), addressFormTemplate.querySelector('.options'))
+    document.getElementById('saveAndCloseModal').onclick = () => {
+      document.querySelector('.travail').innerHTML = '&nbsp;' + document.getElementById('addressInput').value
+      global.userInfo.adresse_entreprise = document.getElementById('addressInput').value
+      myModal.hide()
+    }
+
+    myModal.toggle()
+  }
+
+  function updateAdress(target, value) {
+    document.querySelector(target).innerHTML = value
   }
 })()
 

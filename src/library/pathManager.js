@@ -37,8 +37,8 @@ function createRod () {
 
 function addTransport(data, trajet) {
   const [ container, rod ] = createVehiculeIcon(data, trajet)
-  document.querySelector(`.path[data-trajet=${trajet}]`).insertBefore(container, document.querySelector('.addContainer'))
-  document.querySelector(`.path[data-trajet=${trajet}]`).insertBefore(rod, document.querySelector('.addContainer'))
+  document.querySelector(`.path[data-trajet=${trajet}]`).insertBefore(container, document.querySelector(`.path[data-trajet=${trajet}] .addContainer`))
+  document.querySelector(`.path[data-trajet=${trajet}]`).insertBefore(rod, document.querySelector(`.path[data-trajet=${trajet}] .addContainer`))
 
   if(document.querySelectorAll(`.path[data-trajet=${trajet}] .pathTransport`).length >= 2) {
     document.querySelector(`.path[data-trajet=${trajet}] .addContainer`).remove()

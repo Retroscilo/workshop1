@@ -204,7 +204,7 @@
           <span class="visually-hidden">Loading...</span>
         </div>
       </div>
-      <a id="changeCampus" class="ms-3" href=""> Changer l'adresse de mon entreprise</a>
+      <a id="changeEntreprise" class="ms-3" href=""> Changer l'adresse de mon entreprise</a>
     </div>
     <h4 class="mt-4">Mes moyens de transport</h4>
 
@@ -365,6 +365,8 @@
         <img src="./public/svg/building.svg" alt="">
       </div>
     </div>
+
+    <button type="button" class="btn btn-primary mt-4">Envoyer</button>
   </content>
 
   <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -383,7 +385,21 @@
 </body>
 
 <template id="modal_addressForm">
-  <span>
+  <span data-target="domicile">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Modifier mon adresse</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <input autocomplete="off" class="form-control" list="datalistOptions" id="addressInput"
+        placeholder="Mon domicile">
+      <div class="options">
+      </div>
+    </div>
+  </span>
+</template>
+<template id="modal_addressForm">
+  <span data-target="travail">
     <div class="modal-header">
       <h5 class="modal-title" id="exampleModalLabel">Modifier mon adresse</h5>
       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

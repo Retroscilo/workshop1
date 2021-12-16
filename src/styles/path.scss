@@ -37,6 +37,11 @@
       top: 50%;
       transform: translate(-50%, -50%);
       fill: $main-color;
+      pointer-events: none;
+    }
+    
+    & path {
+      pointer-events: none;
     }
   }
 

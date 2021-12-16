@@ -39,6 +39,7 @@ function addTransport(data) {
     document.querySelector('.addContainer').remove()
     let lastRod = [...document.querySelectorAll('.rod')].reverse()[0]
     lastRod.remove()
+    if(document.querySelectorAll('.pathContainer').length === 1)
   }
 }
 

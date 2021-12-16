@@ -12,7 +12,7 @@ global.userInfo = {
 
 // Import all plugins
 import * as bootstrap from 'bootstrap';
-import autoCompletion from './library/autocompletion';
+import autoCompletion from './library/autoCompletion';
 import initVehiculeSelection from "./library/vehiculeSelection"
 import * as pathManager from "./library/pathManager"
 

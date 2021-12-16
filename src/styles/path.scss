@@ -1,7 +1,9 @@
 .path {
   width: 80%;
+  height: 100px;
   max-width: 850px;
   margin: 0 auto;
+  transition: flex-grow .3s;
 
   & .dot {
     position: relative;
@@ -15,6 +17,7 @@
     background: $main-color;
     border-radius: 5px;
     flex-grow: 3;
+    transition: flex-grow .3s;
     height: 3px;
     margin: 0 15px;
   }

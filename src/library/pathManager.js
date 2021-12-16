@@ -1,6 +1,7 @@
 import initVehiculeSelection from "./vehiculeSelection";
 
-let add = document.querySelector('add')
+let add = document.querySelector('.addContainer')
+console.log(add)
 
 function createVehiculeIcon(data) {
   const container = document.createElement('div')
@@ -18,16 +19,23 @@ function createVehiculeIcon(data) {
   remove.addEventListener('click', () => {
     container.previousElementSibling.remove()
     container.remove()
+    if(document.querySelectorAll('.pathTransport').length === 1) addSelection()
   })
 
   container.append(icon)
   container.append(percentage)
   container.append(remove)
 
+  let rod = createRod()
+
+  return [container, rod]
+}
+
+function createRod () {
   const rod = document.createElement('div')
   rod.className = "rod"
 
-  return [container, rod]
+  return rod
 }
 
 function addTransport(data) {
@@ -39,12 +47,14 @@ function addTransport(data) {
     document.querySelector('.addContainer').remove()
     let lastRod = [...document.querySelectorAll('.rod')].reverse()[0]
     lastRod.remove()
-    if(document.querySelectorAll('.pathContainer').length === 1)
   }
 }
 
 function addSelection() {
-  document.querySelector('.path')
+  let rods = [...document.querySelectorAll('.rod')].reverse()
+  console.log(rods[0].previousElementSibling)
+  document.querySelector('.path').insertBefore(add, rods[0])
+  document.querySelector('.path').insertBefore(createRod(), add)
 }
 
 export { addTransport }

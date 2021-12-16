@@ -2,8 +2,10 @@ import { addTransport } from "./pathManager"
 
 function initVehiculeSelection(startNode) {
   let trajet;
+
   startNode.onclick = () => {
     trajet = startNode.dataset.trajet
+    console.log(trajet)
     startNode.classList.add('add--active');
     document.querySelector('.transportSelection').classList.remove('transportSelection--hidden')
     document.addEventListener('click', closeSelection)

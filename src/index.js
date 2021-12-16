@@ -21,6 +21,7 @@ import * as pathManager from "./library/pathManager"
 
   document.querySelector('.domicile').innerHTML = '&nbsp;' + global.userInfo.adresse_domicile
   document.querySelector('.campus').innerHTML = ' ' + global.userInfo.adresse_campus
+  document.querySelector('.travail').innerHTML = ' ' + global.userInfo.adresse_entreprise
 
   global.userInfo.transport_campus.forEach(transport => {
     pathManager.addTransport(transport)

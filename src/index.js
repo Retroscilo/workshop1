@@ -19,7 +19,7 @@ import * as pathManager from "./library/pathManager"
 (function() {
   initVehiculeSelection(document.querySelector('.add'))
 
-  document.querySelector('.domicile').innerHTML = '&nbsp;' + global.userInfo.adresse_domicile
+  document.querySelector('.domicile').innerHTML = ' ' + global.userInfo.adresse_domicile
   document.querySelector('.campus').innerHTML = ' ' + global.userInfo.adresse_campus
   document.querySelector('.travail').innerHTML = ' ' + global.userInfo.adresse_entreprise
 

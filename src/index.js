@@ -72,14 +72,14 @@ import * as pathManager from "./library/pathManager"
   document.getElementById('confirm').onclick = (e) => {
     e.preventDefault()
     myToast.show()
-    /* fetch('https://ecolo.tismatek.com/api/store_form_api', {
+    fetch('https://ecolo.tismatek.com/api/store_form_api', {
       headers: {
         "Accept": "application/json",
         "Content-type": "application/json"
       },
       method: 'POST',
       body: JSON.stringify(userInfo)
-    }).catch(e => console.log(e)) */
+    }).catch(e => console.log(e))
   }
 })()
 

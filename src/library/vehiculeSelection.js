@@ -2,11 +2,10 @@ import { addTransport } from "./pathManager"
 
 let trajet;
 function initVehiculeSelection(startNode) {
-
   startNode.onclick = (e) => {
     trajet = e.target.dataset.trajet
     startNode.classList.add('add--active');
-    document.querySelector('.transportSelection').classList.remove('transportSelection--hidden')
+    document.querySelector(`.path[data-trajet=${trajet}] .transportSelection`).classList.remove('transportSelection--hidden')
     document.addEventListener('click', closeSelection)
   }
 
@@ -18,7 +17,7 @@ function initVehiculeSelection(startNode) {
     node.querySelector('.check').onclick = () => select(node)
   })
 
-  document.querySelectorAll('input[type="range"]').forEach(input => input.oninput = (e) => document.querySelector('.percentageValue').innerHTML = `${input.value}% du trajet`)
+  document.querySelectorAll('input[type="range"]').forEach(input => input.oninput = (e) => input.nextElementSibling.innerHTML = `${input.value}% du trajet`)
   
   function handleTypeSelection(e, selectedNode) {
     hidePercentageInputs()
@@ -42,9 +41,10 @@ function initVehiculeSelection(startNode) {
   function closeSelection(e) {
     if(
       e
-      && (e.path.includes(document.querySelector('.transportSelection')) 
-      || e.path.includes(document.querySelector('.addContainer')))
+      && (e.path.includes(document.querySelectorAll('.addContainer')[0]) 
+      || e.path.includes(document.querySelectorAll('.addContainer')[1]))
       ) { return }
+      console.log('close')
     hidePercentageInputs()
     hideTransportIcons()
     cleanTransportType()
@@ -52,7 +52,7 @@ function initVehiculeSelection(startNode) {
     hidePercentageInputs()
 
     startNode.classList.remove('add--active');
-    document.querySelector('.transportSelection').classList.add('transportSelection--hidden')
+    document.querySelector(`.path[data-trajet=${trajet}] .transportSelection`).classList.add('transportSelection--hidden')
     document.removeEventListener('click', closeSelection)
   }
 

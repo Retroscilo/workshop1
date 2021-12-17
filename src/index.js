@@ -29,11 +29,6 @@ import * as pathManager from "./library/pathManager"
     pathManager.addTransport(transport, "transport_entreprise")
   })
   
-
-
-
-
-
   // modal handling
   var myModal = new bootstrap.Modal(document.getElementById('modal'))
   var modalContent = document.getElementById('modal').querySelector('#template')
@@ -72,11 +67,9 @@ import * as pathManager from "./library/pathManager"
     myModal.toggle()
   }
 
-  document.getElementById('confirm').onclick = () => {
-    fetch('http://localhost:8000/api/store_form_api', {
-      method: 'POST',
-      body: JSON.stringify(global.userInfo)
-    })
+  document.getElementById('confirm').onclick = (e) => {
+    e.preventDefault()
+    console.log(JSON.stringify(global.userInfo))
   }
 })()
 

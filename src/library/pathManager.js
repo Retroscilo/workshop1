@@ -1,3 +1,5 @@
+import initVehiculeSelection from "./vehiculeSelection"
+
 let add = document.querySelector('.addContainer')
 
 function createVehiculeIcon(data, trajet) {
@@ -49,8 +51,10 @@ function addTransport(data, trajet) {
 
 function addSelection(trajet) {
   let rods = [...document.querySelectorAll(`.path[data-trajet=${trajet}] .rod`)].reverse()
-  document.querySelector(`.path[data-trajet=${trajet}]`).insertBefore(add, rods[0])
-  document.querySelector(`.path[data-trajet=${trajet}]`).insertBefore(createRod(), add)
+  const newAdd = add.cloneNode(true)
+  initVehiculeSelection(newAdd)
+  document.querySelector(`.path[data-trajet=${trajet}]`).insertBefore(newAdd, rods[0])
+  document.querySelector(`.path[data-trajet=${trajet}]`).insertBefore(createRod(), document.querySelector(`.path[data-trajet=${trajet}] .addContainer`))
 }
 
 export { addTransport }

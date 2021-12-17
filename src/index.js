@@ -1,12 +1,3 @@
-global.userInfo = {
-  id: 1,
-  "adresse_domicile": "1 rue Jean macé 95170 Deuil-la-barre",
-  "adresse_campus": "8 bis rue de la fontaine aux rois 75018 Paris",
-  "adresse_entreprise": "1 rue de la poire 75012 Paris",
-  "transport_campus": [],
-  "transport_entreprise": []
-};
-
 // Import all plugins
 import * as bootstrap from 'bootstrap';
 import autoCompletion from './library/autoCompletion';
@@ -17,6 +8,17 @@ import * as pathManager from "./library/pathManager"
   initVehiculeSelection(document.querySelector('.add[data-trajet="transport_campus"]'), "transport_campus")
   initVehiculeSelection(document.querySelector('.add[data-trajet="transport_entreprise"]'), "transport_entreprise")
 
+  var myToastEl = document.querySelector('.toast')
+  var myToast = bootstrap.Toast.getOrCreateInstance(myToastEl)
+
+  global.userInfo = {
+    id: findGetParameter("digital_id"),
+    "adresse_domicile": "1 rue Jean macé 95170 Deuil-la-barre",
+    "adresse_campus": "8 bis rue de la fontaine aux rois 75018 Paris",
+    "adresse_entreprise": "1 rue de la poire 75012 Paris",
+    "transport_campus": [],
+    "transport_entreprise": []
+  };
   document.querySelector('.domicile').innerHTML = '&nbsp;' + global.userInfo.adresse_domicile
   document.querySelector('.campus').innerHTML = ' ' + global.userInfo.adresse_campus
   document.querySelector('.travail').innerHTML = ' ' + global.userInfo.adresse_entreprise
@@ -69,7 +71,28 @@ import * as pathManager from "./library/pathManager"
 
   document.getElementById('confirm').onclick = (e) => {
     e.preventDefault()
-    console.log(JSON.stringify(global.userInfo))
+    myToast.show()
+    /* fetch('https://ecolo.tismatek.com/api/store_form_api', {
+      headers: {
+        "Accept": "application/json",
+        "Content-type": "application/json"
+      },
+      method: 'POST',
+      body: JSON.stringify(userInfo)
+    }).catch(e => console.log(e)) */
   }
 })()
+
+function findGetParameter(parameterName) {
+  var result = null,
+      tmp = [];
+  location.search
+      .substr(1)
+      .split("&")
+      .forEach(function (item) {
+        tmp = item.split("=");
+        if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+      });
+  return result;
+}
 

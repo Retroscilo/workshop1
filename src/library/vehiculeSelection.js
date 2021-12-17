@@ -1,5 +1,4 @@
 import { addTransport } from "./pathManager"
-
 let trajet;
 function initVehiculeSelection(startNode) {
   startNode.onclick = (e) => {
@@ -50,10 +49,11 @@ function initVehiculeSelection(startNode) {
     cleanTransportType()
     cleanTransportVehicule()
     hidePercentageInputs()
-
-    startNode.classList.remove('add--active');
-    document.querySelector(`.path[data-trajet=${trajet}] .transportSelection`).classList.add('transportSelection--hidden')
+    
     document.removeEventListener('click', closeSelection)
+    console.log(document.querySelector(`.path[data-trajet=${trajet}] .transportSelection`))
+
+    if(document.querySelector(`.path[data-trajet=${trajet}] .transportSelection`)) {document.querySelector(`.path[data-trajet=${trajet}] .transportSelection`).classList.add('transportSelection--hidden')}
   }
 
   function handleVehiculeSelection(e, selectedNode) {
